@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:31:49 by smamalig          #+#    #+#             */
-/*   Updated: 2025/03/27 20:22:41 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/29 10:30:13 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,22 @@
 #include "libft_internal.h"
 #include "libft_printf.h"
 
+#include <stdio.h>
+
 void	__ft_printf_invalid_format(t_printf_parser *p)
 {
-	(void)p;
+	p->prec = p->spec_pos;
+	p->spec_buf[p->spec_pos] = 0;
+	p->width = -1;
+	__ft_printf_str(p, p->spec_buf);
 }
 
 int	ft_vsnprintf(char *dst, size_t size, const char *fmt, va_list ap)
 {
 	t_printf_parser	p;
 
+	if (!fmt)
+		return (-1);
 	p.dst = dst;
 	p.fmt = fmt;
 	p.size = size;
@@ -35,9 +42,9 @@ int	ft_vsnprintf(char *dst, size_t size, const char *fmt, va_list ap)
 			__ft_printf_insert(&p, *p.fmt++);
 		if (!p.curr(&p))
 			break ;
-		p.fmt++;
+		p.next(&p);
 		if (__ft_printf_handle_conv(&p))
-			return (-1);
+			return (va_end(p.ap), -1);
 	}
 	if (p.pos < p.size)
 		p.dst[p.pos] = 0;

@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:13:41 by smamalig          #+#    #+#             */
-/*   Updated: 2025/03/27 20:22:18 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/30 08:33:23 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ typedef struct s_printf_parser
 # define PRINTF_OTHER 0
 # define PRINTF_UPPER 1
 # define PRINTF_LOWER 0
-
-# define PRINTF_IS_INF(n) ((n >> 52 & 0x7ff) == 0x7ff)
 
 void		__ft_printf_init_parser(t_printf_parser *p);
 void		__ft_printf_reset_parser(t_printf_parser *p);

@@ -6,71 +6,81 @@
 #    By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/13 21:10:40 by smamalig          #+#    #+#              #
-#    Updated: 2025/03/27 18:26:16 by smamalig         ###   ########.fr        #
+#    Updated: 2025/04/30 08:36:49 by smamalig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        = libftprintf.a
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -O3 -g3
 AR          = ar
 ARFLAGS     = rcs
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror -O3
+SRC_FILES   = dprintf.c printf.c snprintf.c sprintf.c \
+	vdprintf.c vprintf.c vsnprintf.c vsprintf.c
 SRCS        = $(wildcard src/*.c)
 TEST_SRCS   = $(wildcard tests/*.c)
 OBJ_DIR     = obj
 OBJS        = $(patsubst src/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 TEST_OBJS   = $(patsubst tests/%.c, $(OBJ_DIR)/%.o, $(TEST_SRCS))
-LIBFT       = libft/libft.a
 INCLUDES    = -Iinclude -Ilibft/include
-HEADER      = include/libft_printf.h include/libft_internal.h
-LIBS        = -lm -Llibft -lft
+HEADERS     = include/libft_printf.h include/libft_internal.h
 
-# Colors
+LIBFT       = libft
+LIBFT_FLAGS = -Llibft -lft
+LIBFT_DIR   = ./libft
+LIBFT_LIB   = libft/libft.a
 
-RED         = \033[0;31m
-GREEN       = \033[0;32m
-YELLOW      = \033[0;33m
-BLUE        = \033[0;34m
-MAGENTA     = \033[0;35m
-CYAN        = \033[0;36m
-BOLD        = \033[1m
-RESET       = \033[0m
+LDFLAGS     = $(LIBFT_FLAGS) -lbsd
+
+RED         = \e[31m
+GREEN       = \e[32m
+YELLOW      = \e[33m
+BLUE        = \e[34m
+MAGENTA     = \e[35m
+CYAN        = \e[36m
+RESET       = \e[m
 
 all: $(NAME)
 
 bonus: all
 
-$(NAME): $(OBJS)
-	@cp $(LIBFT) $(NAME)
-	@printf "$(BOLD)$(BLUE)%12s$(RESET): $(YELLOW)Building$(RESET) $(NAME)\n" $(NAME)
+$(NAME): $(LIBFT) $(OBJS)
+	@cp $(LIBFT_LIB) $(NAME)
+	@printf "$(BLUE)%s$(RESET): $(YELLOW)Building$(RESET) $(NAME)\n" $(NAME)
 	@ar rcs $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: src/%.c $(HEADER)
 	@mkdir -p $(dir $@)
-	@printf "$(BLUE)%12s$(RESET): $(MAGENTA)Compiling$(RESET) $<\n" $(NAME)
+	@printf "$(BLUE)%s$(RESET): $(MAGENTA)Compiling$(RESET) $<\n" $(NAME)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR)/%.o: tests/%.c $(HEADER)
 	@mkdir -p $(dir $@)
-	@printf "$(BLUE)%12s$(RESET): $(MAGENTA)Compiling$(RESET) $<\n" $(NAME)
+	@printf "$(BLUE)%s$(RESET): $(MAGENTA)Compiling$(RESET) $<\n" $(NAME)
 	@$(CC) $(INCLUDES) -c $< -o $@
 
+$(LIBFT):
+	make -C $(LIBFT_DIR) --no-print-directory
+
 norm:
-	@-norminette $(SRCS) $(HEADER) -R CheckDefine | grep -v "OK"
+	@-norminette $(SRCS) $(HEADER) | grep -v "OK"
 
 test: $(OBJS) $(TEST_OBJS) $(HEADER)
-	@$(CC) $(TEST_OBJS) $(OBJS) $(CFLAGS) $(LIBS)
-	@printf "$(BOLD)$(BLUE)%12s$(RESET): $(CYAN)Running$(RESET) $(NAME)\n" $(NAME)
+	$(CC) $(TEST_OBJS) $(INCLUDES) $(OBJS) $(CFLAGS) $(LDFLAGS)
+	@printf "$(BLUE)%s$(RESET): $(CYAN)Running$(RESET) $(NAME)\n" $(NAME)
 	@./a.out
 
 clean:
-	@printf "$(BOLD)$(BLUE)%12s$(RESET): $(RED)Removing$(RESET) object files\n" $(NAME)
+	@printf "$(BLUE)%s$(RESET): $(RED)Removing$(RESET) object files\n" $(NAME)
 	@rm -rf $(OBJ_DIR)
+	@make -C $(LIBFT_DIR) clean --no-print-directory
 
 fclean: clean
-	@printf "$(BOLD)$(BLUE)%12s$(RESET): $(RED)Removing$(RESET) executables and libraries\n" $(NAME)
+	@printf "$(BLUE)%s$(RESET): $(RED)Removing$(RESET) executables and libraries\n" $(NAME)
 	@rm -f $(NAME) a.out
+	@make -C $(LIBFT_DIR) fclean --no-print-directory
 
-re: fclean all
+re: fclean
+	@make all
 
-.PHONY: all clean fclean re norm bonus
+.PHONY: all clean fclean re norm bonus $(LIBFT)

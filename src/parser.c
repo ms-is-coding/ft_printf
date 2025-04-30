@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:23:36 by smamalig          #+#    #+#             */
-/*   Updated: 2025/03/27 20:23:14 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/12 12:38:53 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static char	__ft_printf_method_curr(t_printf_parser *p)
 
 static char	__ft_printf_method_next(t_printf_parser *p)
 {
+	p->spec_buf[p->spec_pos++] = *p->fmt;
 	return (*p->fmt++);
 }
 
@@ -26,7 +27,7 @@ static int	__ft_printf_method_match(t_printf_parser *p, char c)
 {
 	if (*p->fmt != c)
 		return (0);
-	p->fmt++;
+	p->next(p);
 	return (1);
 }
 

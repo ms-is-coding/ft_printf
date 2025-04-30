@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 20:17:29 by smamalig          #+#    #+#             */
-/*   Updated: 2025/03/27 20:18:45 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/12 13:14:44 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ int	__ft_printf_parse_precision(t_printf_parser *p)
 
 	overflow = 0;
 	p->prec = 0;
-	if (p->curr(p) == '*')
+	if (p->match(p, '*'))
 	{
 		p->prec = va_arg(p->ap, int);
-		p->next(p);
 		return (0);
 	}
 	while (ft_isdigit(p->curr(p)) && !overflow)
@@ -42,22 +41,30 @@ int	__ft_printf_parse_precision(t_printf_parser *p)
 	return (0);
 }
 
+static	void	__ft_printf_patch_width(t_printf_parser *p)
+{
+	if (p->width >= 0)
+		return ;
+	p->width = -p->width;
+	p->flags |= PRINTF_FLAG_LEFTADJ;
+}
+
 int	__ft_printf_parse_width(t_printf_parser *p)
 {
 	int	overflow;
 
 	overflow = 0;
 	p->width = 0;
-	if (p->curr(p) == '*')
+	if (p->match(p, '*'))
 	{
 		p->width = va_arg(p->ap, int);
-		p->next(p);
+		__ft_printf_patch_width(p);
 		return (0);
 	}
-	while (ft_isdigit(*p->fmt) && !overflow)
+	while (ft_isdigit(p->curr(p)) && !overflow)
 	{
-		p->width = p->width * 10 + *p->fmt++ - '0';
-		if (ft_isdigit(*p->fmt) && (p->width > INT_MAX / 10
+		p->width = p->width * 10 + p->next(p) - '0';
+		if (ft_isdigit(p->curr(p)) && (p->width > INT_MAX / 10
 				|| (p->width == INT_MAX / 10 && *p->fmt > '7')))
 			overflow = 1;
 	}

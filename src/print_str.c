@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:17:46 by smamalig          #+#    #+#             */
-/*   Updated: 2025/03/27 20:28:05 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/04/12 13:05:41 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <string.h>
 #include <errno.h>
 
-static int	ft_can_print(t_printf_parser *p)
+static int	__ft_can_print(t_printf_parser *p)
 {
 	if (p->prec == -1)
 		return (1);
@@ -38,7 +38,7 @@ void	__ft_printf_str(t_printf_parser *p, const char *s)
 	if (p->prec < len)
 		len = p->prec;
 	__ft_printf_padding(p, len, PRINTF_START, PRINTF_OTHER);
-	while (*s && ft_can_print(p))
+	while (*s && __ft_can_print(p))
 		__ft_printf_insert(p, *s++);
 	__ft_printf_padding(p, len, PRINTF_END, PRINTF_OTHER);
 }
