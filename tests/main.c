@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:09:07 by smamalig          #+#    #+#             */
-/*   Updated: 2025/04/29 10:38:57 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/04 19:13:41 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ int main() {
 	union u_double val;
 	val.u64 = 0x7ff0000000000000;
 
-	int res1 =    printf("\e[92m%-*.*m |%-05.3d| |%p| %f %n\e[m\n", 14, 8, 42, 0x0, 1.23, &mid1);
-	int res2 = ft_printf("\e[93m%-*.*m |%-05.3d| |%p| %f %n\e[m\n", 14, 8, 42, 0x0, 1.23, &mid2);
+	int res1 =    printf("\e[92m%-*.*m |%-05.3d| |%p| %n\e[m\n", 14, 8, 42, &val, &mid1);
+	int res2 = ft_printf("\e[93m%-*.*m |%-05.3d| |%p| %n\e[m\n", 14, 8, 42, &val, &mid2);
 
-	ft_printf("ft_printf(0) = %i\n", ft_printf(0));
+	printf("|%-3X|\n", 0);
+	ft_printf("|%-3X|\n", 0);
 
 	ft_printf("\n");
 	   printf("\e[1;94m==> %i | %i <==\e[m\n", mid1, res1);

@@ -6,7 +6,7 @@
 #    By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/13 21:10:40 by smamalig          #+#    #+#              #
-#    Updated: 2025/04/30 08:36:49 by smamalig         ###   ########.fr        #
+#    Updated: 2025/05/04 19:17:41 by smamalig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIBFT_FLAGS = -Llibft -lft
 LIBFT_DIR   = ./libft
 LIBFT_LIB   = libft/libft.a
 
-LDFLAGS     = $(LIBFT_FLAGS) -lbsd
+LDFLAGS     = $(LIBFT_FLAGS)
 
 RED         = \e[31m
 GREEN       = \e[32m

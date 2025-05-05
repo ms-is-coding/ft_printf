@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 15:13:55 by smamalig          #+#    #+#             */
-/*   Updated: 2025/04/12 12:11:07 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/04 14:40:00 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	__ft_printf_insert(t_printf_parser *parser, char c)
 void	__ft_printf_padding(t_printf_parser *parser, int len, int is_start,
 	int is_numeric)
 {
-	if (len <= 0)
+	if (len < 0)
 		return ;
 	if (is_start && parser->flags & PRINTF_FLAG_LEFTADJ)
 		return ;

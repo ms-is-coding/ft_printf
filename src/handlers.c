@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 20:05:40 by smamalig          #+#    #+#             */
-/*   Updated: 2025/03/27 20:08:09 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/04 19:12:11 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	__ft_printf_handle_uint(t_printf_parser *p)
 	else if (p->len_mod == PRINTF_LEN_CUSTOM_J)
 		__ft_printf_uint(p, (__uint128_t)va_arg(p->ap, __int128_t));
 	else
-		__ft_printf_uint(p, va_arg(p->ap, int));
+		__ft_printf_uint(p, (unsigned int)va_arg(p->ap, int));
 }
 
 void	__ft_printf_handle_hex(t_printf_parser *p, int mask)

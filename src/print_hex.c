@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:34:46 by smamalig          #+#    #+#             */
-/*   Updated: 2025/04/16 22:58:42 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/04 19:13:28 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	__ft_printf_print_len(t_printf_parser *parser, __uint128_t n)
 	int	len;
 
 	len = 0;
+	if (n == 0 && parser->prec == -1)
+		return (1);
 	while (n)
 	{
 		n >>= 4;
