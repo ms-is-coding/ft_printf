@@ -6,14 +6,15 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 20:09:02 by smamalig          #+#    #+#             */
-/*   Updated: 2025/04/30 08:33:50 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/09 02:29:38 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_internal.h"
-#include "libft.h"
 
 #include <limits.h>
+#include <string.h>
+#include <errno.h>
 
 static int	__ft_printf_set_mod(t_printf_parser *p, char *s, int mod)
 {
@@ -56,12 +57,7 @@ static void	__ft_printf_len_mod(t_printf_parser *p)
 		return ;
 }
 
-static void	__ft_printf_char(t_printf_parser *p, char c)
-{
-	__ft_printf_padding(p, 1, PRINTF_START, PRINTF_OTHER);
-	__ft_printf_insert(p, c);
-	__ft_printf_padding(p, 1, PRINTF_END, PRINTF_OTHER);
-}
+#ifdef USE_ERRNO
 
 static void	__ft_printf_conversion(t_printf_parser *p)
 {
@@ -78,7 +74,7 @@ static void	__ft_printf_conversion(t_printf_parser *p)
 	else if (p->match(p, 'u'))
 		__ft_printf_handle_uint(p);
 	else if (p->match(p, 'm'))
-		__ft_printf_strerror(p);
+		__ft_printf_str(p, strerror(errno));
 	else if (p->match(p, 'p'))
 		__ft_printf_pointer(p, va_arg(p->ap, const void *));
 	else if (p->match(p, 'x'))
@@ -89,9 +85,37 @@ static void	__ft_printf_conversion(t_printf_parser *p)
 		__ft_printf_invalid_format(p);
 }
 
+#else
+
+static void	__ft_printf_conversion(t_printf_parser *p)
+{
+	if (p->match(p, 'n'))
+		__ft_printf_save_pos(p, va_arg(p->ap, void *));
+	else if (p->match(p, 's'))
+		__ft_printf_str(p, va_arg(p->ap, const char *));
+	else if (p->match(p, '%'))
+		__ft_printf_insert(p, '%');
+	else if (p->match(p, 'c'))
+		__ft_printf_char(p, va_arg(p->ap, int));
+	else if (p->match(p, 'i') || p->match(p, 'd'))
+		__ft_printf_handle_int(p);
+	else if (p->match(p, 'u'))
+		__ft_printf_handle_uint(p);
+	else if (p->match(p, 'p'))
+		__ft_printf_pointer(p, va_arg(p->ap, const void *));
+	else if (p->match(p, 'x'))
+		__ft_printf_handle_hex(p, 0x20);
+	else if (p->match(p, 'X'))
+		__ft_printf_handle_hex(p, 0);
+	else
+		__ft_printf_invalid_format(p);
+}
+
+#endif
+
 int	__ft_printf_handle_conv(t_printf_parser *p)
 {
-	while (ft_strchr("#0- +", p->curr(p)))
+	while (__ft_printf_strchr("#0- +", p->curr(p)))
 		__ft_printf_parse_flags(p);
 	if (__ft_printf_parse_width(p))
 		return (1);

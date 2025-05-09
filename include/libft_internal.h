@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:13:41 by smamalig          #+#    #+#             */
-/*   Updated: 2025/04/30 08:33:23 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/09 02:31:06 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ enum e_printf_flags
 	PRINTF_FLAG_ALTERNATE = 1 << 0,
 	PRINTF_FLAG_ZEROPAD = 1 << 1,
 	PRINTF_FLAG_LEFTADJ = 1 << 2,
-	PRINTF_FLAG_SIGN = 1 << 3
+	PRINTF_FLAG_SIGN = 1 << 3,
+	PRINTF_FLAG_SPPAD = 1 << 4
 };
 
 enum e_printf_length_modifiers
@@ -71,9 +72,14 @@ void		__ft_printf_reset_parser(t_printf_parser *p);
 
 __int128_t	__ft_printf_abs(__int128_t n);
 char		__ft_printf_abs_char(char c);
-
 int			__ft_printf_int_len(__int128_t n);
 int			__ft_printf_uint_len(__uint128_t n);
+void		__ft_printf_char(t_printf_parser *p, char c);
+
+char		*__ft_printf_strchr(const char *s, char c);
+int			__ft_printf_isdigit(char c);
+size_t		__ft_printf_strlen(const char *s);
+char		*__ft_str_errorname(int error);
 
 void		__ft_printf_insert(t_printf_parser *p, char c);
 void		__ft_printf_padding(t_printf_parser *p, int len, int is_start,
