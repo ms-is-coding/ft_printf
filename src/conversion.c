@@ -74,7 +74,7 @@ static void	__ft_printf_conversion(t_printf_parser *p)
 	else if (p->match(p, 'u'))
 		__ft_printf_handle_uint(p);
 	else if (p->match(p, 'm'))
-		__ft_printf_str(p, strerror(errno));
+		__ft_printf_str(p, __ft_printf_strerror(errno));
 	else if (p->match(p, 'p'))
 		__ft_printf_pointer(p, va_arg(p->ap, const void *));
 	else if (p->match(p, 'x'))
