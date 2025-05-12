@@ -41,7 +41,7 @@ void	__ft_printf_str(t_printf_parser *p, const char *s)
 	__ft_printf_padding(p, len, PRINTF_END, PRINTF_OTHER);
 }
 
-#ifdef BONUS
+#ifdef USE_ERRNO
 
 void	__ft_printf_strerror(t_printf_parser *p)
 {
