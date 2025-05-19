@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 20:05:40 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/04 19:12:11 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:42:32 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	__ft_printf_handle_int(t_printf_parser *p)
 		__ft_printf_int(p, (long long)va_arg(p->ap, long long));
 	else if (p->len_mod == PRINTF_LEN_Z)
 		__ft_printf_int(p, (ssize_t)va_arg(p->ap, size_t));
-	else if (p->len_mod == PRINTF_LEN_CUSTOM_J)
-		__ft_printf_int(p, (__int128_t)va_arg(p->ap, __int128_t));
 	else
 		__ft_printf_int(p, va_arg(p->ap, int));
 }
@@ -43,8 +41,6 @@ void	__ft_printf_handle_uint(t_printf_parser *p)
 		__ft_printf_uint(p, (unsigned long long)va_arg(p->ap, long long));
 	else if (p->len_mod == PRINTF_LEN_Z)
 		__ft_printf_uint(p, (size_t)va_arg(p->ap, size_t));
-	else if (p->len_mod == PRINTF_LEN_CUSTOM_J)
-		__ft_printf_uint(p, (__uint128_t)va_arg(p->ap, __int128_t));
 	else
 		__ft_printf_uint(p, (unsigned int)va_arg(p->ap, int));
 }
@@ -61,8 +57,6 @@ void	__ft_printf_handle_hex(t_printf_parser *p, int mask)
 		__ft_printf_hex(p, (unsigned long long)va_arg(p->ap, long long), mask);
 	else if (p->len_mod == PRINTF_LEN_Z)
 		__ft_printf_hex(p, (size_t)va_arg(p->ap, size_t), mask);
-	else if (p->len_mod == PRINTF_LEN_CUSTOM_J)
-		__ft_printf_hex(p, (__uint128_t)va_arg(p->ap, __uint128_t), mask);
 	else
 		__ft_printf_hex(p, (unsigned int)va_arg(p->ap, int), mask);
 }

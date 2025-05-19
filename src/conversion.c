@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 20:09:02 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/09 02:29:38 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:41:46 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ static void	__ft_printf_len_mod(t_printf_parser *p)
 	if (__ft_printf_set_mod(p, "Z", PRINTF_LEN_Z))
 		return ;
 	if (__ft_printf_set_mod(p, "t", PRINTF_LEN_T))
-		return ;
-	if (__ft_printf_set_mod(p, "J", PRINTF_LEN_CUSTOM_J))
 		return ;
 }
 

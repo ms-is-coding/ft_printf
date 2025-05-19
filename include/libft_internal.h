@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:13:41 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/09 02:31:06 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:41:33 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ enum e_printf_length_modifiers
 	PRINTF_LEN_J,
 	PRINTF_LEN_Z,
 	PRINTF_LEN_T,
-	// custom length modifier for 128 bit numbers
-	PRINTF_LEN_CUSTOM_J
 };
 
 typedef struct s_printf_parser
