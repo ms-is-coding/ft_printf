@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strerror.c                                         :+:      :+:    :+:   */
+/*   strerror.c                                            ⠀⠀⠀⠀⢀⣴⣿⠟⠁ ⣿⠟⢹⣿⣿⠀   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 13:32:50 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/08 23:50:55 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:42:50 by smamalig              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifdef USE_ERRNO
 
 char	*__ft_str_errorname(int error)
 {
@@ -37,3 +39,5 @@ char	*__ft_str_errorname(int error)
 		"ENOKEY", "EKEYEXPIRED", "EKEYREVOKED", "EKEYREJECTED", "EOWNERDEAD",
 		"ENOTRECOVERABLE", "ERFKILL", "EHWPOISION"}[error]);
 }
+
+#endif

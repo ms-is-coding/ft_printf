@@ -6,7 +6,7 @@
 #    By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/13 21:10:40 by smamalig          #+#    #+#              #
-#    Updated: 2025/05/28 10:39:25 by smamalig              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    #
+#    Updated: 2025/05/28 10:41:37 by smamalig              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME        = libftprintf.a
 AR          = ar
 ARFLAGS     = rcs
 CC          = cc
-CFLAGS      = -Wall -Wextra -MMD -MP
+CFLAGS      = -Wall -Wextra -MMD -MP -O0
 SRC_FILES   = dprintf.c printf.c snprintf.c sprintf.c vdprintf.c vprintf.c \
 	vsnprintf.c vsprintf.c conversion.c format.c handlers.c parse_format.c \
 	parser.c print_hex.c print_signed.c print_str.c print_unsigned.c \
@@ -35,7 +35,7 @@ CYAN        = \e[36m
 RESET       = \e[m
 
 ifeq ($(DEBUG), 1)
-	CFLAGS += -Wpedantic -O0 -g3
+	CFLAGS += -Wpedantic -g3
 else
 	CFLAGS += -Werror
 endif
