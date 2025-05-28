@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:45:24 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/09 02:17:16 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/26 15:01:15 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_vdprintf(int fd, const char *fmt, va_list ap)
 	buf = small_buf;
 	if (len >= BUFFER_SIZE)
 	{
-		ft_printf("=> len %i\n", len);
 		buf = malloc(len + 1);
 		if (!buf)
 			return (-1);

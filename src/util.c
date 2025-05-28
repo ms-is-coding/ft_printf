@@ -6,13 +6,13 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 23:51:08 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/08 23:45:11 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:47:26 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_internal.h"
 
-int	__ft_printf_int_len(__int128_t n)
+int	__ft_printf_int_len(intmax_t n)
 {
 	int	len;
 
@@ -25,7 +25,7 @@ int	__ft_printf_int_len(__int128_t n)
 	return (len);
 }
 
-int	__ft_printf_uint_len(__uint128_t n)
+int	__ft_printf_uint_len(uintmax_t n)
 {
 	int	len;
 
@@ -38,18 +38,18 @@ int	__ft_printf_uint_len(__uint128_t n)
 	return (len);
 }
 
-__int128_t	__ft_printf_abs(__int128_t n)
+intmax_t	__ft_printf_abs(intmax_t n)
 {
-	const int	mask = n >> 127;
-
-	return ((n + mask) ^ mask);
+	if (n < 0)
+		return (-n);
+	return (n);
 }
 
 char	__ft_printf_abs_char(char c)
 {
-	const int	mask = c >> 7;
-
-	return ((c + mask) ^ mask);
+	if (c < 0)
+		return (-c);
+	return (c);
 }
 
 void	__ft_printf_char(t_printf_parser *p, char c)

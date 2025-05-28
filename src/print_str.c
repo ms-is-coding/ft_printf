@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_str.c                                        :+:      :+:    :+:   */
+/*   print_str.c                                           ⠀⠀⠀⠀⢀⣴⣿⠟⠁ ⣿⠟⢹⣿⣿⠀   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:17:46 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/08 23:43:02 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/27 15:59:50 by smamalig              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	__ft_printf_str(t_printf_parser *p, const char *s)
 	__ft_printf_padding(p, len, PRINTF_END, PRINTF_OTHER);
 }
 
-#ifdef BONUS
+#ifdef USE_ERRNO
 
 void	__ft_printf_strerror(t_printf_parser *p)
 {

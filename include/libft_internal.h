@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:13:41 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/09 02:31:06 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:46:24 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ enum e_printf_length_modifiers
 	PRINTF_LEN_J,
 	PRINTF_LEN_Z,
 	PRINTF_LEN_T,
-	// custom length modifier for 128 bit numbers
-	PRINTF_LEN_CUSTOM_J
 };
 
 typedef struct s_printf_parser
@@ -70,10 +68,10 @@ typedef struct s_printf_parser
 void		__ft_printf_init_parser(t_printf_parser *p);
 void		__ft_printf_reset_parser(t_printf_parser *p);
 
-__int128_t	__ft_printf_abs(__int128_t n);
+intmax_t	__ft_printf_abs(intmax_t n);
 char		__ft_printf_abs_char(char c);
-int			__ft_printf_int_len(__int128_t n);
-int			__ft_printf_uint_len(__uint128_t n);
+int			__ft_printf_int_len(intmax_t n);
+int			__ft_printf_uint_len(uintmax_t n);
 void		__ft_printf_char(t_printf_parser *p, char c);
 
 char		*__ft_printf_strchr(const char *s, char c);
@@ -89,10 +87,10 @@ void		__ft_printf_sign(t_printf_parser *p, int is_neg, int is_start);
 void		__ft_printf_str(t_printf_parser *p, const char *s);
 void		__ft_printf_strerror(t_printf_parser *p);
 void		__ft_printf_save_pos(t_printf_parser *p, void *save_ptr);
-void		__ft_printf_int(t_printf_parser *p, __int128_t n);
-void		__ft_printf_hex(t_printf_parser *p, __uint128_t n, int mask);
+void		__ft_printf_int(t_printf_parser *p, intmax_t n);
+void		__ft_printf_hex(t_printf_parser *p, uintmax_t n, int mask);
 void		__ft_printf_pointer(t_printf_parser *p, const void *ptr);
-void		__ft_printf_uint(t_printf_parser *p, __uint128_t n);
+void		__ft_printf_uint(t_printf_parser *p, uintmax_t n);
 void		__ft_printf_invalid_format(t_printf_parser *p);
 
 int			__ft_printf_parse_width(t_printf_parser *p);

@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 15:54:52 by smamalig          #+#    #+#             */
-/*   Updated: 2025/03/27 20:13:05 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:09:40 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,21 @@
 # include <stdarg.h>
 
 // Enjoy this very thread-safe printf :)
+
+__attribute__((format (printf, 1, 2)))
 int	ft_printf(const char *fmt, ...);
+
+__attribute__((format (printf, 2, 3)))
 int	ft_dprintf(int fd, const char *fmt, ...);
+
+__attribute__((format (printf, 2, 3)))
 int	ft_sprintf(char *dst, const char *fmt, ...);
+
+__attribute__((format (printf, 3, 4)))
 int	ft_snprintf(char *dst, size_t size, const char *fmt, ...);
+
+// for internal use, you can also use them if you know what you're doing
+// though why, if you can use the above alternatives?
 
 int	ft_vprintf(const char *fmt, va_list ap);
 int	ft_vdprintf(int fd, const char *fmt, va_list ap);

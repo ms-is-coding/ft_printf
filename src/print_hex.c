@@ -6,13 +6,13 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:34:46 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/04 19:13:28 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:49:16 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_internal.h"
 
-void	__ft_printf_hex_internal(t_printf_parser *p, __uint128_t n,
+void	__ft_printf_hex_internal(t_printf_parser *p, uintmax_t n,
 	int mask, int iters)
 {
 	if (!iters)
@@ -21,7 +21,7 @@ void	__ft_printf_hex_internal(t_printf_parser *p, __uint128_t n,
 	__ft_printf_insert(p, "0123456789ABCDEF"[n & 0xF] | mask);
 }
 
-static int	__ft_printf_print_len(t_printf_parser *parser, __uint128_t n)
+static int	__ft_printf_print_len(t_printf_parser *parser, uintmax_t n)
 {
 	int	len;
 
@@ -51,7 +51,7 @@ int	__ft_printf_0x(t_printf_parser *p, int start, int mask)
 	return (2);
 }
 
-void	__ft_printf_hex(t_printf_parser *p, __uint128_t n, int mask)
+void	__ft_printf_hex(t_printf_parser *p, uintmax_t n, int mask)
 {
 	const int	len = __ft_printf_print_len(p, n);
 	const int	off = ((p->flags & PRINTF_FLAG_ALTERNATE) > 0) << 1;

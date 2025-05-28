@@ -6,14 +6,14 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 15:40:57 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/04 14:59:21 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:48:18 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_internal.h"
 
 static void	__ft_printf_uint_internal(t_printf_parser *parser,
-	__uint128_t n, int iters)
+	uintmax_t n, int iters)
 {
 	if (!iters)
 		return ;
@@ -21,7 +21,7 @@ static void	__ft_printf_uint_internal(t_printf_parser *parser,
 	__ft_printf_insert(parser, n % 10 + '0');
 }
 
-static int	__ft_printf_print_len(t_printf_parser *parser, __uint128_t n)
+static int	__ft_printf_print_len(t_printf_parser *parser, uintmax_t n)
 {
 	const int	len = __ft_printf_uint_len(n);
 
@@ -32,7 +32,7 @@ static int	__ft_printf_print_len(t_printf_parser *parser, __uint128_t n)
 	return (len);
 }
 
-void	__ft_printf_uint(t_printf_parser *parser, __uint128_t n)
+void	__ft_printf_uint(t_printf_parser *parser, uintmax_t n)
 {
 	const int	len = __ft_printf_print_len(parser, n);
 
