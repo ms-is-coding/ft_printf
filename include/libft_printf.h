@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_printf.h                                     :+:      :+:    :+:   */
+/*   libft_printf.h                                        ⠀⠀⠀⠀⢀⣴⣿⠟⠁ ⣿⠟⢹⣿⣿⠀   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 15:54:52 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/16 11:09:40 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:38:26 by smamalig              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 
 // Enjoy this very thread-safe printf :)
 
-__attribute__((format (printf, 1, 2)))
-int	ft_printf(const char *fmt, ...);
+int	ft_printf(const char *fmt, ...)
+	__attribute__((format (printf, 1, 2)));
 
-__attribute__((format (printf, 2, 3)))
-int	ft_dprintf(int fd, const char *fmt, ...);
+int	ft_dprintf(int fd, const char *fmt, ...)
+	__attribute__((format (printf, 2, 3)));
 
-__attribute__((format (printf, 2, 3)))
-int	ft_sprintf(char *dst, const char *fmt, ...);
+int	ft_sprintf(char *dst, const char *fmt, ...)
+	__attribute__((format (printf, 2, 3)));
 
-__attribute__((format (printf, 3, 4)))
-int	ft_snprintf(char *dst, size_t size, const char *fmt, ...);
+int	ft_snprintf(char *dst, size_t size, const char *fmt, ...)
+	__attribute__((format (printf, 3, 4)));
 
 // for internal use, you can also use them if you know what you're doing
 // though why, if you can use the above alternatives?
