@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   conversion.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/27 20:09:02 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/16 10:43:31 by smamalig         ###   ########.fr       */
+/*                                                         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   */
+/*   conversion.c                                          ⠀⠀⠀⠀⢀⣴⣿⠟⠁ ⣿⠟⢹⣿⣿⠀   */
+/*                                                         ⠀⠀⢀⣴⣿⠟⠁⠀⠀⠀⠁⢀⣼⣿⠟⠀   */
+/*   By: smamalig <smamalig@student.42.fr>                 ⠀⣴⣿⣟⣁⣀⣀⣀⡀⠀⣴⣿⡟⠁⢀⠀   */
+/*                                                         ⠀⠿⠿⠿⠿⠿⣿⣿⡇⠀⣿⣿⣇⣴⣿⠀   */
+/*   Created: 2025/03/27 20:09:02 by smamalig              ⠀⠀⠀⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀   */
+/*   Updated: 2025/05/28 10:34:08 by smamalig              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	__ft_printf_conversion(t_printf_parser *p)
 	else if (p->match(p, 'u'))
 		__ft_printf_handle_uint(p);
 	else if (p->match(p, 'm'))
-		__ft_printf_str(p, strerror(errno));
+		__ft_printf_str(p, __ft_printf_strerror(errno));
 	else if (p->match(p, 'p'))
 		__ft_printf_pointer(p, va_arg(p->ap, const void *));
 	else if (p->match(p, 'x'))

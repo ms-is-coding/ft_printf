@@ -6,7 +6,7 @@
 #    By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/13 21:10:40 by smamalig          #+#    #+#              #
-#    Updated: 2025/05/09 01:50:10 by smamalig         ###   ########.fr        #
+#    Updated: 2025/05/19 16:43:46 by smamalig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ RESET       = \e[m
 ifeq ($(DEBUG), 1)
 	CFLAGS += -Wpedantic -O0 -g3
 else
-	CFLAGS += -Werror -O3
+	CFLAGS += -Werror
 endif
 
 ifeq ($(USE_ERRNO), 1)
