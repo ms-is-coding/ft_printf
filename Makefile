@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile                                              ⠀⠀⠀⠀⢀⣴⣿⠟⠁ ⣿⠟⢹⣿⣿⠀    #
 #                                                     +:+ +:+         +:+      #
 #    By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/13 21:10:40 by smamalig          #+#    #+#              #
-#    Updated: 2025/05/19 16:43:46 by smamalig         ###   ########.fr        #
+#    Updated: 2025/05/28 10:39:25 by smamalig              ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,6 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean
-	@make all
+	@make all --no-print-directory
 
 .PHONY: all clean fclean re bonus
