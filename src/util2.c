@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 23:29:07 by smamalig          #+#    #+#             */
-/*   Updated: 2025/05/09 21:47:35 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/06/01 12:12:03 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	__ft_printf_isdigit(char c)
 	return (c >= '0' && c <= '9');
 }
 
-size_t	__ft_printf_strlen(const char *s)
+size_t	__ft_printf_strnlen(const char *s, size_t n)
 {
 	size_t	i;
 
-	i = -1;
-	while (s[i++ + 1])
-		;
+	i = 0;
+	while (n-- && s[i])
+		i++;
 	return (i);
 }
