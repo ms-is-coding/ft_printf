@@ -18,7 +18,7 @@ CFLAGS      = -Wall -Wextra -MMD -MP -O0
 SRC_FILES   = dprintf.c printf.c snprintf.c sprintf.c vdprintf.c vprintf.c \
 	vsnprintf.c vsprintf.c conversion.c format.c handlers.c parse_format.c \
 	parser.c print_hex.c print_signed.c print_str.c print_unsigned.c \
-	save_pos.c strerror.c util.c util2.c
+	save_pos.c strerror.c util.c util2.c print_oct.c print_bin.c
 SRC_DIR     = src
 OBJ_DIR     = obj
 SRCS       := $(addprefix $(SRC_DIR)/, $(SRC_FILES))

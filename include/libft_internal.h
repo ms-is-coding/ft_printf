@@ -89,6 +89,8 @@ void		__ft_printf_strerror(t_printf_parser *p);
 void		__ft_printf_save_pos(t_printf_parser *p, void *save_ptr);
 void		__ft_printf_int(t_printf_parser *p, intmax_t n);
 void		__ft_printf_hex(t_printf_parser *p, uintmax_t n, int mask);
+void		__ft_printf_bin(t_printf_parser *p, uintmax_t n, int mask);
+void		__ft_printf_oct(t_printf_parser *p, uintmax_t n);
 void		__ft_printf_pointer(t_printf_parser *p, const void *ptr);
 void		__ft_printf_uint(t_printf_parser *p, uintmax_t n);
 void		__ft_printf_invalid_format(t_printf_parser *p);
@@ -98,6 +100,8 @@ int			__ft_printf_parse_precision(t_printf_parser *p);
 int			__ft_printf_parse_flags(t_printf_parser *p);
 
 void		__ft_printf_handle_hex(t_printf_parser *p, int mask);
+void		__ft_printf_handle_bin(t_printf_parser *p, int mask);
+void		__ft_printf_handle_oct(t_printf_parser *p);
 void		__ft_printf_handle_int(t_printf_parser *p);
 void		__ft_printf_handle_uint(t_printf_parser *p);
 int			__ft_printf_handle_conv(t_printf_parser *p);

@@ -6,7 +6,7 @@
 /*   By: smamalig <smamalig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 20:09:02 by smamalig          #+#    #+#             */
-/*   Updated: 2025/06/01 12:15:01 by smamalig         ###   ########.fr       */
+/*   Updated: 2025/06/01 13:28:35 by smamalig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,12 @@ static void	__ft_printf_conversion(t_printf_parser *p)
 		__ft_printf_strerror(p);
 	else if (p->match(p, 'p'))
 		__ft_printf_pointer(p, va_arg(p->ap, const void *));
-	else if (p->match(p, 'x'))
-		__ft_printf_handle_hex(p, 0x20);
-	else if (p->match(p, 'X'))
-		__ft_printf_handle_hex(p, 0);
+	else if (p->curr(p) == 'x' || p->curr() == 'X')
+		__ft_printf_handle_hex(p, p->next(p) & 0x20);
+	else if (p->curr(p) == 'b' || p->curr() == 'B')
+		__ft_printf_handle_bin(p, p->next(p) & 0x20);
+	else if (p->match(p, 'o'))
+		__ft_printf_handle_oct(p);
 	else
 		__ft_printf_invalid_format(p);
 }
@@ -99,10 +101,12 @@ static void	__ft_printf_conversion(t_printf_parser *p)
 		__ft_printf_handle_uint(p);
 	else if (p->match(p, 'p'))
 		__ft_printf_pointer(p, va_arg(p->ap, const void *));
-	else if (p->match(p, 'x'))
-		__ft_printf_handle_hex(p, 0x20);
-	else if (p->match(p, 'X'))
-		__ft_printf_handle_hex(p, 0);
+	else if (p->curr(p) == 'x' || p->curr(p) == 'X')
+		__ft_printf_handle_hex(p, p->next(p) & 0x20);
+	else if (p->curr(p) == 'b' || p->curr(p) == 'B')
+		__ft_printf_handle_bin(p, p->next(p) & 0x20);
+	else if (p->match(p, 'o'))
+		__ft_printf_handle_oct(p);
 	else
 		__ft_printf_invalid_format(p);
 }

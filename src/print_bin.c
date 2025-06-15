@@ -12,13 +12,12 @@
 
 #include "libft_internal.h"
 
-void	__ft_printf_hex_internal(t_printf_parser *p, uintmax_t n,
-	int mask, int iters)
+void	__ft_printf_bin_internal(t_printf_parser *p, uintmax_t n, int iters)
 {
 	if (!iters)
 		return ;
-	__ft_printf_hex_internal(p, n >> 4, mask, iters - 1);
-	__ft_printf_insert(p, "0123456789ABCDEF"[n & 0xF] | mask);
+	__ft_printf_bin_internal(p, n >> 1, iters - 1);
+	__ft_printf_insert(p, (n & 1) + '0');
 }
 
 static int	__ft_printf_print_len(t_printf_parser *parser, uintmax_t n)
@@ -30,7 +29,7 @@ static int	__ft_printf_print_len(t_printf_parser *parser, uintmax_t n)
 		return (1);
 	while (n)
 	{
-		n >>= 4;
+		n >>= 1;
 		len++;
 	}
 	if (parser->prec > len)
@@ -38,7 +37,7 @@ static int	__ft_printf_print_len(t_printf_parser *parser, uintmax_t n)
 	return (len);
 }
 
-int	__ft_printf_0x(t_printf_parser *p, int start, int mask)
+int	__ft_printf_0b(t_printf_parser *p, int start, int mask)
 {
 	if (!(p->flags & PRINTF_FLAG_ALTERNATE))
 		return (0);
@@ -47,11 +46,11 @@ int	__ft_printf_0x(t_printf_parser *p, int start, int mask)
 	if (!start && p->flags & PRINTF_FLAG_ZEROPAD)
 		return (0);
 	__ft_printf_insert(p, '0');
-	__ft_printf_insert(p, 'X' | mask);
+	__ft_printf_insert(p, 'B' | mask);
 	return (2);
 }
 
-void	__ft_printf_hex(t_printf_parser *p, uintmax_t n, int mask)
+void	__ft_printf_bin(t_printf_parser *p, uintmax_t n, int mask)
 {
 	const int	len = __ft_printf_print_len(p, n);
 	const int	off = (n != 0 && (p->flags & PRINTF_FLAG_ALTERNATE) > 0) << 1;
@@ -59,18 +58,10 @@ void	__ft_printf_hex(t_printf_parser *p, uintmax_t n, int mask)
 	if (p->prec >= 0)
 		p->flags &= ~PRINTF_FLAG_ZEROPAD;
 	if (off)
-		__ft_printf_0x(p, PRINTF_START, mask);
+		__ft_printf_0b(p, PRINTF_START, mask);
 	__ft_printf_padding(p, len + off, PRINTF_START, PRINTF_NUMERIC);
 	if (off)
-		__ft_printf_0x(p, PRINTF_END, mask);
-	__ft_printf_hex_internal(p, n, mask, len);
+		__ft_printf_0b(p, PRINTF_END, mask);
+	__ft_printf_bin_internal(p, n, len);
 	__ft_printf_padding(p, len + off, PRINTF_END, PRINTF_NUMERIC);
-}
-
-void	__ft_printf_pointer(t_printf_parser *p, const void *ptr)
-{
-	if (!ptr)
-		return (__ft_printf_str(p, "(nil)"));
-	p->flags |= PRINTF_FLAG_ALTERNATE;
-	__ft_printf_hex(p, (size_t)ptr, 0x20);
 }
